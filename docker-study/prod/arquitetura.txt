@@ -1,0 +1,20 @@
+backend   <-->   Nginx (proxy reverso)   <-->   laravel
+cliente           
+   1                    2                          3
+
+----------------------------------------------------------
+1
+
+
+
+
+2
+
+
+
+
+
+3) O php expôs a porta 9000, onde o Nginx irá encaminhar todas as requisições e obter as respostas
+
+
+

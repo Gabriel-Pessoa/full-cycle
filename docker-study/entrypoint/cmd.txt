@@ -1,0 +1,5 @@
+docker build -t gabrieljulio/hello-entrypoint:latest .
+docker run --rm gabrieljulio/hello-entrypoint:latest
+
+// Teste
+docker run --rm gabrieljulio/hello-entrypoint:latest Gabriel

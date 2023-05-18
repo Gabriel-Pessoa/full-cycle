@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    # comando padrão para iniciar mysql
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    # se o container cair, ele reinicia automaticamente
+    restart: always
+    # se precisar acessar o mysql através do terminal do container
+    tty: true
+    # volume compartilhado para salvar dados do banco e não perde quando o container morrer
+    volumes:
+      - ./repo:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge

@@ -1,0 +1,38 @@
+# Versão do manifesto docker-compose
+version: '3'
+
+# Os containers
+services:
+
+  # O container
+  laravel:
+    # O campo build não é obrigatório. 
+    # Como funciona? Toda vez que rodar o docker-compose gerará o build da imagem baseado no arquivo Dockerfile setado
+    build: 
+      # pasta que possui o dockerfile 
+      context: ./laravel
+      # nome do arquivo dockerfile
+      dockerfile: Dockerfile.prod
+    # nome da imagem
+    image: gabrielpessoa/laravel:prod
+    # nome do container
+    container_name: sample-app
+    # redes utilizadas
+    networks:
+      - laranet 
+
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    image: gabrielpessoa/nginx:prod
+    container_name: nginx
+    networks:
+      - laranet
+    ports:
+      - "8080:80"
+
+# declarando a rede e o seu tipo
+networks:
+  laranet:
+    driver: bridge

@@ -1,0 +1,47 @@
+## Multi state build: criar o processo de build em duas ou mais etapas
+## Etapa 1: Gerar a imagem
+# Para facilitar a identificação da imagem da primeira etapa, damos um nome pra ela
+FROM php:7.4-cli AS builder
+
+WORKDIR /var/www
+
+RUN apt-get update && \ 
+    apt-get install libzip-dev -y
+
+# Install php extensions
+RUN docker-php-ext-install zip
+
+# Install composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');"
+
+# Create project
+RUN php composer.phar create-project laravel/laravel sample-app
+
+## Etapa 2: Otimiza a imagem
+FROM php:7.4-fpm-alpine
+
+WORKDIR /var/www
+
+# apaga pasta inútil
+RUN rm -rf /var/www/html
+
+# copiando todo o conteúdo do container builder, de um diretório específico
+# para dentro do container atual
+COPY --from=builder /var/www/sample-app .
+
+# Crando link simbólico
+RUN ln -s public html
+
+# permissões:
+# wwwdata: permite que o alpine linux possa executar comando, gravar arquivos dentro da pasta, senão os arquivos de cache e logs não serão guardados
+# chown troca o dono do grupo
+RUN chown -R www-data:www-data /var/www 
+# Demos permissão para o user www-data e o grupo www-data virar dono de /var/www, podendo agora gravar e escrever
+
+# expoẽ porta
+EXPOSE 9000
+
+# comando para executar o php
+CMD [ "php-fpm" ]

@@ -1,0 +1,7 @@
+1) Criando network que irá conter os containers:
+    docker network create laranet
+
+2) Rodando container com docker-compose:
+    docker-compose up
+
+3)

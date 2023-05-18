@@ -1,0 +1,68 @@
+1) flag -it:
+    i: Keep STDIN open even if not attached
+    t: Allocate a pseudo-TTY
+
+2) flag -dit
+    d: Run container in background and print container ID
+    i: Keep STDIN open even if not attached
+    t: Allocate a pseudo-TTY
+
+3) docker attach:
+    Attach to STDIN, STDOUT or STDERR
+
+4) Rede host só funciona em Linux
+
+5) Acessando os logs do Container:
+    docker logs <container_name>
+
+6) Execute o passo-a-passo no terminal e depois passe para o Dockerfile
+
+7) Comando para buildar (criar) imagem:
+    docker build -t <name:tag> <PATH>
+    ex: docker build -t gabrielpessoa/laravel-sample-app:latest .
+
+8) Executando container:
+    ex: docker run --rm -d --name laravel-sample-app -p 8000:8000 gabrielpessoa/laravel-sample-app
+
+    obs: 
+    `--rm` remove container ao finalizar processo.
+    `-d` roda container em segundo plano e imprime id do container
+    `--name` atribui um  nome ao container
+    `-p` publica uma porta(s) do container(s) para a máquina local
+
+9) Compartilhando volumes: tem que ser o caminho completo para funcionar:
+    docker run --rm -it -v $(pwd)/:/usr/src/app
+
+    obs: 
+    1) tudo que escrever dentro do container refletirá na minha máquina local
+    2) `-v` vincula diretório da máquina com o diretório do container, compartilhando o volume
+
+10) Podemos trabalhar com dois dockerfiles, só precisamos identicar qual no comando:
+    ex: docker build -t gabrielpessoa/express-sample-app . -f Dockerfile.prod
+
+    obs:
+    `-f` nome do Dockerfile (padrão é 'PATH/Dockerfile')
+
+11) Quanto menor a imagem e mais enxuta (sem tantos scripts) melhor, corre menos risco de vulnerabilidades.
+    11.1 esse tipo de imagem é recomendado colocar em prod, ex: a imagem alpine, que é linux bem pequeno
+
+12) Docker-compose é uma ferramenta complementar ao docker, baseado num arquivo de manifestyaml, podendo 
+subir um ou mais container com um único comando.
+
+    12.1 Comandos para rodar docker-compose:
+        docker-compose up
+
+    12.2 Comandos para parar docker-compose:
+        docker-compose down
+
+    12.3 Listando containers do docker-compose:
+        docker-compose ps
+    
+    12.4 Comandos para rodar docker-compose sem travar o terminal:
+        docker-compose up -d
+
+    12.4 Comando para rodar docker-compose atualizando imagem a partir de atualização emS algum dockerfile de contexto:
+        docker-compose up --build
+
+13) Setando variáveis de ambiente no docker:
+        docker run -e <ENV>='<value>'

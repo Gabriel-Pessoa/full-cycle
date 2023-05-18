@@ -1,0 +1,7 @@
+1) Construir imagem:
+
+docker build -t gabrieljulio/nginx-gabriel:latest .
+
+2) Rodando:
+
+docker run --rm -d -p 8080:80 gabrieljulio/nginx-gabriel

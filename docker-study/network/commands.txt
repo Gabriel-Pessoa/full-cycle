@@ -1,0 +1,34 @@
+1) Inspecionando um rede docker:
+    docker network inspect <rede>
+
+2) Entrando num container docker para escrever:
+    docker attach <container_name>
+
+3) Criando rede no docker:
+    docker network create --driver <bridge | host | overlay> <network_name>
+
+4) Executando container utilizando rede criada:
+    docker run -dit --name <container_name> --network <network_name> <cmd>
+
+    ex: docker run -dit --name ubuntu1 --network minharede bash
+
+5) Executando container:
+    docker exec -it ubuntu1 bash
+
+6) Conectando container a uma rede:
+    docker network connect <network_name> <container_name>
+
+
+------------------------ Driver Host ----------------------------------
+
+7) Executando um container com rede do tipo host:
+    docker run --rm -d --name nginx --network host nginx
+
+    -acessando:
+    curl http://localhost
+
+
+------------------------ Host Network  ----------------------------------
+
+8) Acessando rede da máquina dentro do docker:
+    curl http://host.docker.internal:8000
