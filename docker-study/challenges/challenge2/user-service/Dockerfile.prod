@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+
+FROM node:18.16-alpine AS builder
+WORKDIR /usr/src/app/user-service
+COPY . .
+RUN npm install && npm run build
+
+
+FROM node:18.16-alpine
+WORKDIR /usr/src/app/user-service
+COPY package.json .
+RUN npm install --only=production
+COPY --from=builder /usr/src/app/user-service/dist .
+RUN npm install pm2 -g
+CMD ["pm2-runtime", "server.js"]

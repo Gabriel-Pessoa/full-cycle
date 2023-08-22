@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  go-print:
+    build: 
+      context: .
+    container_name: go-print

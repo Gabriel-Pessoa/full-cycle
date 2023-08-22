@@ -1,6 +1,7 @@
 import mysql from 'mysql2';
 import { IDatabase } from './db.service';
-import { IUser } from '../models/user.interface';
+import { IUser, User } from '../models/user.interface';
+import { CustomError, ErrorType } from '../utils/customErrors';
 
 export interface IRepository<T> {
     create(resource: T): Promise<void>;
@@ -23,13 +24,16 @@ export class UserRepo implements IRepository<IUser> {
             .then(([value]: any) => {
                 const [row] = value;
 
-                const user: IUser = {
-                    id: row.id,
-                    email: row.email,
-                    password: row.password,
-                    admin: (row.admin == true),
-                    created_at: row.created_at,
-                };
+                // set error no row in result set
+                if (!row) throw new CustomError(ErrorType.Database_No_Rows);
+
+                const user = new User(
+                    row.id,
+                    row.email,
+                    row.password,
+                    (row.admin == true),
+                    row.created_at
+                );
 
                 return user;
             });
@@ -40,8 +44,7 @@ export class UserRepo implements IRepository<IUser> {
         const inserts = [user.id, user.email, user.password, user.admin, user.created_at];
         sql = mysql.format(sql, inserts);
 
-        return this.database.connection.promise().query(sql).
-            then();
+        return this.database.connection.promise().query(sql).then();
     }
 
     getAll(): Promise<IUser[]> {
@@ -51,14 +54,14 @@ export class UserRepo implements IRepository<IUser> {
             .then(([values]: any) => {
                 const users: IUser[] = [];
 
-                values.forEach((value: IUser) => {
-                    const user: IUser = {
-                        id: value.id,
-                        email: value.email,
-                        password: value.password,
-                        admin: (value.admin == true),
-                        created_at: value.created_at,
-                    };
+                values.forEach((row: IUser) => {
+                    const user = new User(
+                        row.id,
+                        row.email,
+                        row.password,
+                        (row.admin == true),
+                        row.created_at
+                    );
                     users.push(user);
                 });
 

@@ -1,5 +1,5 @@
-import { ICustomMiddleware } from '../models/customMiddleware.interface';
 import { Request, Response, NextFunction } from 'express';
+import { ICustomMiddleware } from '../models/customMiddleware.interface';
 
 export class LoggerMiddleware implements ICustomMiddleware {
     handle = (req: Request, res: Response, next: NextFunction) => {

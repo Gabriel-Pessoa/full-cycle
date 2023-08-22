@@ -1,6 +1,6 @@
+import express from 'express';
 import { APIKeyAuthMiddleware } from './middlewares/apiKeyAuth';
 import { LoggerMiddleware } from './middlewares/logger';
-import express from 'express';
 import { config } from './configs/config';
 import { userRouter } from './routes/routes';
 

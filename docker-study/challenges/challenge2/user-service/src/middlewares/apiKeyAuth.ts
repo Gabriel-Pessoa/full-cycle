@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { ICustomMiddleware } from '../models/custom-middleware.interface';
+import { ICustomMiddleware } from '../models/customMiddleware.interface';
 
 const X_API_KEY: string = 'X-API-KEY'.toLowerCase();
 
 export class APIKeyAuthMiddleware implements ICustomMiddleware {
     private apiKey: string;
+    
     handle = (req: Request, res: Response, next: NextFunction) => {
         this.auth(req, res, next)
     }

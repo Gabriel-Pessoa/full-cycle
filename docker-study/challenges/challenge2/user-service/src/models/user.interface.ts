@@ -13,7 +13,7 @@ export class User implements IUser {
     admin: boolean;
     created_at: Date;
 
-    constructor(id: string, email: string, password: string, admin: boolean, createdAt: Date ) {
+    constructor(id: string, email: string, password: string, admin: boolean, createdAt: Date) {
         this.id = id;
         this.email = email;
         this.password = password;
