@@ -1,26 +1,35 @@
-# How to run app
+<h1 align="center">Software Architecture - Challenge Two</h1>
+
+## Project description
+   Software architecture study project. This project has a basic and isolated infrastructure, using Docker Compose to orchestrate running of multiple related containers together in a development environment.
 
 ## Install dependecies
-1. docker
-2. docker-compose
+- [Docker](https://docs.docker.com/install/) 
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## Step 1: Create and start containers
+## 🚀 How to run app
+
+## Step 1: 
+
+Make sure to set all env variables from .env.template (`challenges/challenge2/user-service/.env.template`).
+
+## Step 2: Create and start containers
 ```bash
 docker-compose up -d --build
 ```
 
-## Step 2: Acess bash into MySQL container
+## Step 3: Acess bash into MySQL container
 ```bash
 docker exec -it mysql bash
 ```
 
-## Step 3: Acess the mysql database 
+## Step 4: Acess the mysql database 
 ```bash
 mysql -uroot -p
 ```
-Entry with user and password
+Entry with password: `root`
 
-## Step 3: Create database schema and insert user default
+## Step 5: Create database schema and insert user default
 ```bash
 use users;
 
@@ -40,3 +49,42 @@ VALUES (
         true 
     );
 ```
+
+# API endpoints
+
+| Method   | URL                                                                | Description                                     | Headers              |
+| -------- | ------------------------------------------------------------------ | ----------------------------------------------- | -------------------- |
+| `GET`    | `http://localhost:8080/users/0e001554-1821-11ee-be56-0242ac120002` | Retrieve user by id.                            | X-API-KEY: <api_key> |
+| `POST`   | `http://localhost:8080/users/0e001554-1821-11ee-be56-0242ac120002` | Create a new user from already created user id. | X-API-KEY: <api_key> |
+| `GET`    | `http://localhost:8080/users`                                      | Retrieve all users.                             | X-API-KEY: <api_key> |
+
+
+# REST API Example Requests
+
+### Create [POST]
+
+Create a new user from already created user id.
+
++ Request (application/json)
+
+    + Headers
+
+            X-API-KEY: <api_key> 
+
+    + Body
+
+            {
+              "email": "example@email.com",
+              "password": "gcGx1cyBlYXRzIG1lbnU=",
+              "admin": false
+            }
+
++ Response 200 (application/json)
+
+      {
+      	"id": "0e001554-1821-11ee-be56-0242ac120002",
+      	"email": "example@email.com",
+      	"password": "gcGx1cyBlYXRzIG1lbnU",
+      	"admin": false,
+      	"created_at": "2023-11-20T23:55:16.000Z"
+      }

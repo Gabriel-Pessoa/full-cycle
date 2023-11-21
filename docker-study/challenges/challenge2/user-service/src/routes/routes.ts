@@ -20,7 +20,7 @@ userRouter.get('/:id',
     (req, res) => new GetUserController(userRepo).execute(req, res),
 );
 
-// get all user endpoint
+// get all users endpoint
 userRouter.get('',
     (req, res) => new GetUsersController(userRepo).execute(req, res),
 );

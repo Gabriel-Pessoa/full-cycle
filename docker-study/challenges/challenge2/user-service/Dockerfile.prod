@@ -5,7 +5,6 @@ WORKDIR /usr/src/app/user-service
 COPY . .
 RUN npm install && npm run build
 
-
 FROM node:18.16-alpine
 WORKDIR /usr/src/app/user-service
 COPY package.json .
