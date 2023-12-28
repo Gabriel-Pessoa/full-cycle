@@ -1,0 +1,19 @@
+# Pilares
+    - Estruturação:
+        Fácil evolução, componentização para atender os objetivos de negócio
+    -Componentização:
+        Os componentes vão ajudar a garantir a evolução daquele software, se comunicando entre si.
+        Bom, a primeira coisa que temos que pensar quando vamos criar qualquer arquitetura,  desenvolver qualquer software, 
+        é na estrutura que esse software vai ter. Ou seja, na parte de estruturação, como que tudo vai estar estruturado. 
+        Ele tem que ser de fácil evolução, tem que ter componentes para atender os objetivos do negócio. 
+        Então, sem eu ter uma estrutura muito clara de como eu vou trabalhar, realmente fica cada vez mais difícil para 
+        você criar um software de qualidade que ele consiga evoluir conforme o tempo. Um outro ponto aqui, que obviamente 
+        vale a pena virar um item mais independente, é a parte de componentização em si, porque eu posso ter a base de como 
+        o software vai funcionar, mas são os componentes que vão nos ajudar a garantir a evolução por partes daquele software e,
+        obviamente, esses componentes vão se comunicar em algum momento. Então, toda vez que estamos falando em arquitetura de 
+        software a palavra componentização tem que estar presente. Não existe pensar em software sem pensar em seus componentes.
+
+    - Relacionamento entre sistemas
+    - Governança:
+        Padronização, regras, documentação, definições que fique claro pra todo mundo; linguagens, protocolos e sistemas que a 
+        gente vai utilizar para se comunicar.

@@ -1,0 +1,34 @@
+# Requisitos arquiteturais (RAs)
+    os Requisitos Arquiteturais, você consiga colocar as regras do jogo e, uma vez que as regras estão muito claras, 
+    você consegue pensar o que você vai fazer para que, uma vez que eu tenha todos esses requisitos, eu possa planejar 
+    a minha arquitetura da melhor forma possível.
+
+- Performance:
+    Ex:
+    Essa minha aplicação tem uma regulação que ela não pode passar de 500 milissegundos as requisições.
+    O throughput dessa minha aplicação é que se eu tiver uma máquina com 1000 milicores rodando dessa forma, 
+    eu vou ter que aguentar, por exemplo, 50 transações por segundo
+
+- Armazenamento de dados:
+    Eventualmente a sua empresa fechou um contrato com AWS, então vamos utilizar diversos tipos de banco de dados, 
+    inclusive o Dynamo DB, por exemplo, ou os dados têm que cumprir regulações. Então, se o software estiver rodando na Europa, 
+    os dados vão ter que estar em data centers da Europa. Se não, vão ter que estar no Brasil
+
+- Escalabilidade:
+    Verticalmente? Como é que eu vou trabalhar nesse processo de escala? Eu vou ter um load balancer? Como vai funcionar esse meu load balancer? 
+    Vai funcionar no formato round-robin ou, por exemplo, eu posso ter diversas máquinas com configurações diferentes? E como elas vão balancear a carga, 
+    já que elas têm configurações diferentes? Tudo isso são requisitos arquiteturais
+
+- Segurança:
+    Protocolo de criptografia
+
+- Legal
+    LGPD
+
+- Auditoria:
+    Tudo o que acontece no meu sistema precisa estar logado. E onde isso vai ficar logado? Como que eu consigo fazer? Por quanto tempo este dado vai ser retido?
+    Todos esses tipos de coisas são reconhecidos como requisitos arquiteturais
+
+- Marketing
+    Imagina que eu sei que a minha aplicação vai participar de diversas campanhas de marketing e ela tem que ter tais disponibilidades, tem que ter tais pontos para 
+    conseguir aguentar diversos pontos que vão estar diretamente ligados com o marketing

@@ -1,0 +1,24 @@
+# Papel do Arquiteto de Software
+    - Transformar requisitos de negócio em padrões arquiteturais 
+    - Orquestrar pessoas desenvolvedores e experts de domínio
+    - Entender de forma profunda conceitos e modelos arquiteturais
+    - Auxilia na tomada de decisão nos momentos de crise
+    - Reforça boas práticas de desenvolvimento: testes, solid, clean arquicteture, events
+
+Obs: 
+    Quanto mais o arquiteto ou arquiteta de software entender de modelos arquiteturais, 
+    de conceitos de arquitetura de software, maior vai ser o leque de possibilidades que ele vai entender. 
+    Contextualizar o desafio que ele tem para resolver da melhor forma possível. 
+    Então, se um arquiteto ou uma arquiteta tiver uma limitação muito grande em modelos arquiteturais,
+    provavelmente aquele projeto não necessariamente vai ser feito da melhor forma.
+    Mas isso só vai acontecer porque o arquiteto tem uma limitação. 
+    Então, é sempre bom a gente entender da melhor forma possível modelos arquiteturais.
+
+    Apesar de nem todas as organizações possuírem o cargo de arquiteto de software, 
+    normalmente profissionais mais experientes como desenvolvedores seniors e tech leads
+    acabam realizando esse papel baseado em suas experiências anteriores.
+
+
+    Como dissemos, utilizar os recursos certos, do jeito certo, de qualquer tecnologia é determinante para 
+    a boa performance de uma aplicação. Usar o banco de dados da maneira errada geralmente implica em problemas 
+    desagradáveis que poderiam ser evitados. Antes de botar a culpa no banco, use-o direito!

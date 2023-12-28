@@ -1,0 +1,174 @@
+# Características Arquiteturais
+    ## Operacionais:
+        * Disponibilidade: SLA/SLO/SLI. SLA (Service Level Agreement - Acordo de Nível de Serviço) O SLA de atendimento trata-se de um acordo em 
+            que fica definido o nível de qualidade do serviço que o time de atendentes deve atingir; é o acordo que você fez com os seus clientes 
+            e usuários com relação ao que será entregue a eles;
+            SLO:
+            SLI:
+        
+        * Recuperação de desastre:
+            O negócio ficou fora do ar, o que eu tenho que fazer? Como eu tenho que agir? Depois que esse problema aconteceu, como eu vou mitigar 
+            esse problema para evitar que aconteça novamente? Como o sistema consegue se recuperar? O que acontece, por exemplo, se cair uma região 
+            da AWS que o seu sistema está? O quanto você está disposto a pagar para trabalhar multi região, para trabalhar multi-cloud? 
+            Então tudo isso vai entrar na sua conta. 
+
+        * Performance:
+            Eu devo ser muito intencional nesse critério. Qual é a latência tolerada, qual é o throughput (vazão/ qtd. de requisições por segundo). Eu devo 
+            me perguntar para quantas requisições por segundo, qual é o melhor banco.
+
+        * Recuperação (backup):
+            Definir políticas para testar as ferramentas de backup para avaliar se eles estão sendo atualizados, se possível salvar backup em nuvem diferente
+
+        * Confiabilidade e segurança:
+            Https, application firewall, autenticação, captcha....
+        
+        * Robustez: 
+            Ou seja, quando você está trabalhando com seu sistema, quando estamos falando em robustez, basicamente a gente está pensando o seguinte: o meu 
+            sistema, além de ser confiável, está numa estrutura robusta o suficiente para conseguir garantir que, se ele precisar escalar, ele vai conseguir? 
+            A gente entra num aspecto tão interessante que eu vou dar um exemplo para vocês. É muito difícil pessoas comuns terem esse tipo de problema. 
+            Mas o que temos que entender é que a cloud não é infinita, a nuvem não é infinita. E eu conheço empresas que têm mais de 100.000 instâncias 
+            rodando simultaneamente. E o que acontece? Vamos imaginar que caia uma região da AWS e daí essas máquinas têm que evacuar uma região e ir para 
+            uma outra região para manter a disponibilidade do sistema. O problema é que na outra região, ela não tinha a capacidade operacional de ter tantas 
+            máquinas no ar rodando. Então, mesmo você tendo a estrutura de uma AWS por trás, você acabou ficando sem região. Você acabou não conseguindo 
+            fazer o Deploy de todos os seus serviços.
+
+            Existem outros pontos que você tem que levar em consideração, que muitas vezes não levamos na hora que a gente vai criar. É o seguinte: às vezes, na região que
+            você está, cai uma zona de disponibilidade, ou seja, quando estamos trabalhando com cloud temos uma região, por exemplo Norte Virgínia e nessa região tem vários
+            datacenters que se comunicam rapidamente por fibra. Aí um datacenter cai, você vai querer jogar para o outro datacenter. Mas o que acontece? Você não tem 
+            quantidade de peso necessário pela forma que você dividiu a sua rede. 
+
+        * Escalabilidade:
+            Verticalmente é quando aumentamos o recurso computacional na nossa máquina e horizontalmente é quando adicionamos mais máquinas, mais recurso 
+            computacional de forma horizontal. E como que você consegue garantir que o seu sistema de uma forma geral vai ficar o mínimo escalável, 
+            principalmente da forma horizontal? Você vai trabalhar de forma stateless, você vai ter que seguir os 12 fatores no Heroku. Se você não conhece, 
+            dê uma busca sobre Twelve Factors na hora de criar uma aplicação para ajudar com que ela seja escalável. A sua aplicação tem que permitir que você 
+            rode em um ambiente escalável. Se a sua aplicação não permitir, não tem o que fazer, você vai ter que crescer a sua estrutura computacional de forma
+            vertical, ela vai atingir um limite e você vai sofrer. 
+   
+    ## Estruturais
+    Essas características estão, obviamente, muito mais ligadas ao processo de desenvolvimento e como você vai desenvolver a aplicação. Quando estamos trabalhando com estruturas operacionais, 
+    o que você tem que fazer é conseguir pensar em como vai ficar mais fácil de você operar e como a sua aplicação pode crescer, operacionalmente falando. Agora, quando formos falar sobre 
+    características estruturais, vamos falar em pontos de atenção que temos que ter no software para que ele funcione de uma forma cada vez mais flexível. 
+
+        * Configurável:
+            Muitas aplicações hoje são de difícil configuração. Ou seja, eu preciso botar uma conexão com o banco de dados, e como é que eu faço? Eu tenho que botar de uma forma hard coded 
+            lá no meu código? Ou eu vou trabalhar com um arquivo de variável de ambiente onde eu falo qual é a minha variável de ambiente e ele utiliza essas variáveis para passar uma string 
+            de conexão com o banco de dados? Ou mesmo eu preciso fazer uma alteração na conta do gateway de pagamento porque foi criada uma nova conta, o API key dessa gateway está de fácil 
+            configuração para que eu consiga mudar? Ou eu estou trabalhando com diversas gateways de pagamento, mas eu vou utilizar uma por padrão, mas se uma falhar, eu quero utilizar outra? 
+            Está fácil a configuração de eu conseguir fazer o cambiamento, trocar isso aí de forma geral? Então, perceba que a sua aplicação tem que ser cada vez mais configurável e a melhor 
+            forma de você verificar isso é tentar subi-la em produção e em modo staging. Se você tiver que fazer uma única mudança no código fonte da aplicação para ela rodar em ambiente diferente, 
+            você já vai perceber que ela não é configurável. Então, quando você for criar por padrão, já tem que pensar nisso aí.  
+
+        * Extensibilidade:
+            Sua aplicação tem que estar pensada para que ela consiga crescer, ou seja, ela tem que crescer de forma com que as coisas possam ser plugadas nela. E normalmente essas coisas que são plugadas
+            muitas vezes são aspectos de terceiros. Vamos dar um exemplo da gateway de pagamento aqui. Vou imaginar que eu vou utilizar a gateway de pagamento x. Então vou lá, faço toda a implementação 
+            daquela gateway x de pagamento. Aí o seu chefe chega no outro dia e fala assim: “olha. o negócio é o seguinte, nós mudamos de gateway, né? E a gente vai utilizar essa gateway Y agora” e aí, 
+            obviamente, você vai ter que fazer a implementação. Mas se você tiver que sair mudando pontos estruturais da sua aplicação para conseguir adicionar uma nova gateway, provavelmente é porque 
+            você projetou errado sua aplicação. Você tem que conseguir trabalhar com interfaces, adaptadores, etc, para que consiga adicionar coisas e que a sua aplicação não fique refém de vendors que 
+            você for trabalhar. E daí acabamos entrando com diversos conceitos, por exemplo, como camadas anticorrupção, que você consegue separar a sua aplicação com camadas finas com o mundo externo. 
+            Você pode precisar trocar de banco de dados, querer trocar message broker, adicionar novos módulos na sua aplicação sem ter que mudar a base do que você está criando. Então a sua aplicação t
+            em que ser extensível, tanto nos lados de vendors que vão ser plugados, mas também no ponto de você conseguir adicionar novos módulos nela ali. Se a sua aplicação está difícil adicionar novas 
+            features, novos módulos, se você está tendo que refatorar muita coisa toda vez que pedem para você adicionar algo na sua aplicação, provavelmente você tem que pensar um pouco mais como você está 
+            estruturando a sua aplicação
+
+        * Fácil instalação:
+            Outra ponto é que, se toda vez que você fizer o Deploy da sua aplicação, ou se você criar ambientes como eu falei para você, vamos criar um ambiente de teste, de staging, de produção, um ambiente 
+            na máquina do seu companheiro de trabalho e tudo mais e for um parto para acontecer isso, olha a sua aplicação, ela tem que ser de fácil instalação. E quais são os grandes problemas que você vai 
+            enfrentar para fazer a instalação da sua aplicação? O ponto número um é a padronização do ambiente. E qual é a melhor forma atual para você padronizar o ambiente no qual a aplicação vai rodar? 
+            Containers. A resposta hoje, no momento que eu estou gravando esse vídeo, é containers. Se você trabalhar com containers, Docker, etc, você vai garantir que a sua aplicação vai trabalhar até com 
+            o mesmo kernel que você escolher na imagem que você for trabalhar. 
+
+            O segundo ponto a gente volta no primeiro item que falamos aqui, que a sua aplicação tem que ser configurável. Se for muito difícil configurar a sua aplicação, obviamente vai ser difícil fazer a 
+            instalação dela. E o outro ponto é que muitas vezes a nossa aplicação tem dependências que são muito complexas de trabalhar. Por exemplo, ela vai trabalhar com Elastic Search? Trabalhar com Elastic Search 
+            não é algo simples, isso é algo complexo, principalmente em nível de infraestrutura. Então, como que eu vou fazer para testar isso? Eu posso trabalhar Docker, subir um Elastic Search, mas quando for trabalhar 
+            em produção, como é que eu vou trabalhar com um processo de configuração e conexão? Como será a criação dos meus índices? Vão ser criados pela minha aplicação ou vão ser criados manualmente lá no servidor de 
+            produção? Mesma coisa com tópicos do Kafka. A sua aplicação vai criar o tópico ou esse tópico já vai vir criado? E com RabbitMQ? Eu vou criar uma fila ou a aplicação vai criar fila por ela mesma? Então, esses 
+            tipos de coisa são extremamente importantes na hora em que você vai fazer a instalação, principalmente quando você depende de itens de terceiros, inclusive banco de dados, por exemplo. 
+        
+        * Reuso de componentes:
+            Outro ponto importante é a parte de reutilização de componentes. Como eu falei pra você, toda vez que você usa componentes que vão facilitar sua vida, isso aí acaba mudando completamente a forma como você vai trabalhar. 
+            Porém, a gente tem que levar em conta que existem alguns aspectos que não são simples de lidar. Vamos imaginar que a gente tem um sistema monolítico. Qual é a grande vantagem de um sistema monolítico? Depois vamos falar 
+            especificamente sobre os sistemas monolíticos, mas é que não existe latência de rede. Não temos problemas de conexão, tudo está dentro do mesmo sistema. E uma vez que você está dentro do mesmo sistema, a melhor coisa do mundo 
+            é você ter um bom framework e boas bibliotecas que você consegue reutilizar no mesmo sistema toda hora, e isso aí acaba facilitando a nossa vida e inclusive você pode ter bibliotecas de validação, coisas desse tipo. Porém, 
+            o que acontece? Quando você já vai em um mundo um pouco mais distribuído, você tem microsserviço, tem diversos sistemas, muitas vezes o que acontece? Equipes acabam criando soluções iguais para resolver o mesmo problema, 
+            ou seja, a equipe A cria uma biblioteca de validação. A equipe B cria uma mesma biblioteca de validação e aí, eventualmente, temos duas coisas para ser mantidas. Então, nesse momento, será que não vale a pena ter uma vertical 
+            ali na empresa, onde você pega todas as bibliotecas que podem ser compartilhadas e criar times ali paralelos na empresa para manter essas bibliotecas para que todo mundo possa utilizar? Então, esse tipo de coisa é algo realmente 
+            importante. Eu tenho diversos produtos na minha empresa que podem utilizar os mesmos componentes e vão facilitar muito a nossa vida pra gente trabalhar.
+
+        * Internacionalização:
+        
+        * Fácil manutenção:
+            Criar sistemas de fácil manutenção não é simples. E por que eu estou dizendo isso? Quanto mais sênior você fica, mais vai começar a perceber que a sua maior dificuldade é conseguir fazer que uma solução complexa que você fez 
+            fique simples. Quanto mais simples o seu software ficar, mais fácil vai ser a manutenção dele.
+
+            O que eu poderia dizer aqui em relação a isso, principalmente se você está trabalhando com paradigmas voltados mais à orientação a objetos é para, aprender solid de verdade, aprenda a pensar muito bem as camadas do seu sistema. 
+            Tente trabalhar muito com adaptadores e interfaces e isso vai te ajudar a evitar acoplamentos. Então poderíamos sair falando um monte de coisas, design patterns, etc. Mas o grande ponto é que, quando estamos falando em manutenção, 
+            podemos pensar desde a estrutura pra gente sair mudando o software, e até mesmo correções rápidas para eu conseguir subir no software. Quanto tempo eu vou demorar? Um ponto importante é que quando estamos trabalhando com manutenção, 
+            normalmente temos dois pontos. O primeiro ponto é correção de bugs e o segundo ponto é adicionar novas features pra gente conseguir trabalhar. Está fácil adicionar novas features? Ponto. Está fácil corrigir bugs? Ponto. Você tem testes? 
+            Ponto. Se você não tiver teste, de cara você já vai perceber que você não vai ter um sistema de fácil manutenção. Então, o ponto importante que eu quero levantar aqui para você é o teste. Se você hoje em dia não trabalha com testes, 
+            provavelmente terá uma péssima experiência em relação a manutenção em qualquer tipo de software. 
+
+        * Portabilidade:
+            a gente pode fazer com que os sistemas fiquem cada vez menos dependentes dos vendors. Aqui eu posso dizer que é mais tranquilo mudar o banco de dados. E eu dei o exemplo de banco de dados, mas vamos dizer a verdade, nunca vai ser 
+            tranquilo mudar o banco de dados. Mas eu digo que, tecnicamente, é possível mudar o banco de dados sem impactar de uma forma muito grande o código da sua aplicação ou mesmo a parte de Observabilidade. Eu estou trabalhando aqui com Elastic Stack,
+            agora eu quero mudar para New Relic, agora eu quero mudar para Data Dog. É fácil mudar isso no meu sistema? Será que não vale a pena trabalhar com opentelemetry que vai facilitar a trabalhar com vendors em relação a tudo isso? Tá fácil mudar um 
+            gateway de pagamento? Então todo esse tipo de coisa vai te ajudar a pensar em portabilidade aí nesse momento. 
+
+        * Fácil suporte (logs, debugging):
+            Então, nesse ponto, você tem que pensar como você vai logar. Você vai ter que criar diversas formas para conseguir debugar. Criar momentos e marcar, fazer benchmarks internos da sua aplicação, trabalhar com diversos tipos de spam, com observabilidade, 
+            centralização de logs, criação de métricas e tudo isso a parte de observabilidade vai te ajudar demais. Então, uma dica que eu dou para você é: foque muito, inclusive em observabilidade, padrão de geração de logs. A gente sabe que logs hoje, cada ferramenta, 
+            e cada framework gera um padrão, tenta consolidar os seus logs em um único padrão. Vai ficar muito mais fácil a operação de tudo. Toda vez que vamos trabalhar com dados podemos pensar que o nosso storage é caro em alguns momentos, e existem diversas formas de 
+            você trabalhar com retenção de dados. Vou dar um exemplo: se você está trabalhando com um sistema de stream de dados tipo Kafka, cada tópico que você cria você pode dizer que aqueles dados vão ficar disponíveis, por exemplo, por sete dias, por 30 dias, e depois 
+            disso eles vão ser apagados.
+    
+    ## Cross-Cutting
+
+        * Acessibilidade:
+            Qual o público que vai acessar o frontend? Tá fácil para outras pessaos conseguriem acessar e navegar na sua plataforma? 
+        
+        * Processo de retenção de dados (quanto tempo os dados serão mantidos)
+            O que você tem de dado hoje realmente precisa existir no longo prazo? Se precisa, como que você vai guardar? E aí nós temos que pensar em relação a como você vai manter os dados.
+
+            O Elastic Search trabalha assim. Se você pegar, por exemplo, o Prometeus, que utiliza um Time Steel Database, você vai perceber que ele tem muito mais precisão nas métricas, nos dados mais quentes. E quanto mais longe estiverem
+            aquelas informações das métricas que você vai pegar, você vai ver que vai diminuir a precisão, porque aqueles dados vão ficando cada vez mais compactados, de difícil acesso porque.já faz bastante tempo que ele vai trabalhar. Então sempre pense realmente quanto tempo você vai manter seus logs, as suas informações.
+
+        * Autenticação e autorização:
+            Quando você está trabalhando em uma Arquitetura distribuída, normalmente você vai ter um identity provider, ou seja, um provedor de Identidade. Mas como os outros microsserviços vão acessar o tempo todo? Um outro ponto interessante também é o seguinte: 
+            hoje em dia trabalhamos muito com o API Gateway e isso é algo que consegue trabalhar no processo de autenticação para você. Existem muitos softwares, muitas empresas, hoje em dia que, na iniciativa deles, adivinhem o que que acontece? 
+            O sistema não tem mais validação de autenticação. Por quê? Porque a autenticação está acontecendo na API Gateway. E aí ele sabe que se o usuário está chegando naquele sistema é porque ele já veio autenticado. 
+
+            Mas o que é API Gateway? É basicamente um mecanismo que fica mais na borda da sua aplicação, que todo mundo que acessa, antes de cair na sua aplicação, cai nela. E ali você consegue colocar políticas de autenticação, políticas de timeout, 
+            políticas de quantidade de requisições que vão poder ser feitas. Então tem diversos plugins, de forma geral, que você pode trabalhar com uma API Gateway.
+
+            Então, hoje em dia, quando trabalhamos com sistemas monolíticos, é mais tranquilo trabalharmos com autenticação, autorização, qualquer bom framework vai resolver esse problema. Quando estamos no mundo distribuído isso aí vai ser realmente mais complexo. 
+            Então, sempre pense num servidor de identidade que te ajude em relação com isso. E também pense se vale a pena você implementar autenticação nos seus microsserviços ou trabalhar com algum mecanismo que faça a autenticação antes da requisição chegar ao seu microsserviço.
+
+        * Legal:
+            Quanto tempo esses dados vão estar mantidos? Onde esses dados vão ter que ser mantidos? Tudo o que acontece na sua aplicação vai ter que estar em conformidade com o país onde você está rodando, com as leis que você está rodando e isso aí é algo que vai ter que ser pensado.
+
+        * Privacidade:
+            LGPD
+        
+        * Segurança:
+            já comece a pensar na segurança da sua aplicação desde a borda, ou seja, bem antes do usuário cair realmente no seu servidor. Trabalhe com web firewall, crie regras e mecanismos que consigam identificar robôs para ficar batendo na sua aplicação. 
+            E com grande parte dos web firewalls já vai ajudar barrar um monte de coisa, desde tentativas de SQL Injection e grande partes ali de forma geral, das regras e das vulnerabilidades básicas de cross-site scriping, todas aquelas paradas que tem no OWASP
+
+        * Usabilidade:
+            Como está organizada sua API? Ela tem documentação? É de fácil utilização? Você está trabalhando com padrões Open API ou coisas desse tipo? Como que você tem um contrato claro da sua API que você pode disponibilizar para outras pessoas? 
+            Como você está documentando isso? Você tem um read me. Tem muita gente com dificuldade para trabalhar com a sua API?
+    
+    Obs:
+        Entender a estrutura das coisas: 
+        Porque quando você entende a estrutura de como as coisas funcionam, você consegue 
+        pensar de forma intencional nos pontos que vão te impactar. 
+        Quando não temos uma visão geral de como você deve trabalhar em cima de qualquer coisa, 
+        o que vai acontecer de forma geral? Você deixa de resolver problemas de forma intencional. 
+        O que isso significa? Quando você trabalha baseado em uma intenção, significa que você está 
+        se preparando para resolver determinados tipos de problema. Quando você não trabalha de forma 
+        intencional, significa que, eventualmente, quando você está desenvolvendo algo, aquele problema 
+        pode até ter sido resolvido, mas ele é meio que resolvido indiretamente. Você não foi lá, não 
+        pensou exatamente naquilo e muitas vezes está tudo ok, vai funcionar. Mas muitas vezes essa 
+        parada pode dar problema e você não viu o problema vindo te atropelar no final das contas, tá? 
+
+        Como trabalhar isso de forma intencional? Checklist das intenções. Toda vez que tiver desenvolvendo devemos 
+        checar se aquele código cumpre as intenções colhidas anteriormente   

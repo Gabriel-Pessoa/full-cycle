@@ -1,0 +1,92 @@
+# Tipos de Arquitetura
+
+## Tecnológica:
+    - Tem especialidade em tecnologias específicas de mercado
+    - Geração de valor baseado em especialidades
+    - Diversidade de processionais especialistas
+    
+    Ex:
+        -Arquiteto Elastic:
+            Especialista em Elastic Search, o Kibana, família Beats, Fleet, Logstash. Toda a stack Elastic.
+
+        -Arquiteto Java:
+            Especialista que vai além de codificar: VM
+
+        -Arquiteto SQL Server
+        - Arquiteto Oracle
+        - Arquiteto SAP
+
+## Corporativa:
+    - Impacta estrateficamento a organização como um todo
+    - Avaliação de custos
+    - Avaliaçã de novas tecnologias
+    - Padronização de tecnologias
+    - Planejamento de grande implantações
+    - Sistemas core
+    - Migrações
+
+    Vamos imaginar que a gente está em uma software house ou em um grande banco, por exemplo. 
+    Muitas vezes eu tenho milhares de funcionários e se eu não tiver uma regra, se eu não tiver 
+    uma governança sólida em relação a tecnologias que esse pessoal vai utilizar, como eles vão utilizar, 
+    quais vão ser os vendors que eles vão utilizar, isso aí pode perder o controle e trazer danos bem grandes para a corporação. 
+    Então a arquitetura corporativa consegue fazer, por exemplo, uma avaliação de custos que toda a área de desenvolvimento, de engenharia, 
+    vai ter para desenvolver os projetos que vão fazer sentido para a empresa crescer..
+    
+    Nessa avaliação de custos, esses custos vão ser tanto com Devs, tanto com as verticais de desenvolvimento e até mesmo com os tipos de tecnologia
+    licenças que eles vão trabalhar. Por exemplo, surgiu uma nova tecnologia ou lançou uma versão .NET 6, será que faz sentido todo mundo migrar?
+    Será que os novos projetos vão começar dessa forma? A arquitetura corporativa vai gerar esse nível de padronização. Existem muitas empresas que 
+    não têm esse tipo de governança que se uma pessoa fala assim: eu vou começar a trabalhar com Erlangen, aqui eu vou trabalhar com o Rust, eu vou 
+    trabalhar com Coding, eu vou trabalhar com .NET, vou trabalhar com PHP, eu vou trabalhar com sei lá Code fusion. Imagina se todo o ambiente corporativo
+    tivesse uma pluralidade tão grande de tecnologias que muitas vezes esse nível de profissional seria difícil encontrar ou qualquer coisa desse tipo, 
+    que pode fazer com que isso impacte negativamente nos projetos.
+
+    Então, obviamente, hoje em dia com o mundo de microsserviços e tudo mais, a gente tem uma pluralidade, porém essa pluralidade tem que ser estratégica, 
+    ela tem que fazer sentido para a organização como um todo para que ela consiga estar alinhada, por exemplo, com a área de pessoas, para a área de contratação, 
+    para a área de entrevistas, então tudo isso tem um impacto muito grande. Você consegue avaliar novas tecnologias, você gera padronização nessas tecnologias e 
+    você consegue fazer inclusive planejamentos de grandes implantações.
+
+    Vamos imaginar que a empresa decide, por exemplo, utilizar os Salesforce ali dentro. Então a gente sabe que o Salesforce é um CRM extremamente conhecido. 
+    Mas quando eu colocar o Salesforce, eu vou ter que mudar culturalmente, por exemplo, a forma como o pessoal de vendas trabalha. 
+    A forma como o pessoal de pós venda trabalha. Qual o impacto que isso vai gerar na organização? Mas a área de marketing, por exemplo, poderia usar a nuvem do
+    Salesforce de marketing e então integrar com essa parte de vendas, como é que a galera de marketing trabalha hoje? Quais são as ferramentas? O que poderia substituir ou não?
+    Ou mesmo: eu tenho um sistema monolítico muito grande aqui e está começando a crescer, meu time está ficando difícil como a gente pode criar um projeto a médio longo prazo 
+    para eu desmembrar esse sistema monolítico em sistemas baseados em microsserviços? Grandes implantações que acabam tendo um impacto geral na empresa. 
+    Normalmente isso também faz parte da arquitetura corporativa. Então sistemas core, sistemas que mexem com o dia a dia da organização normalmente têm a ver com a parte de 
+    arquitetura corporativa ali no dia, migrações foi o que eu acabei de falar aqui para você.
+
+## Solução:
+    - Fica entre área de negócios e software: é uma área técnica com visão muito clara no negócio
+    - Consegue transformar um requisito de negócio em solução de software: enxergar um monte de especificações, necessidades que as empresas
+    - Desenhos arquiteturais da solução de um software para reproduzir como ele irá funcionar:
+        * Diagrama C4
+        * UML
+        * BPMN
+    - Analisa os impactos comerciais em relação a uma escolha de tecnológica
+    - Pode participar do processo comercial de pré-venda e venda
+    - Analisa os impactos dos custos para o negócio 
+
+    Agora uma coisa super importante também é que o arquiteto ou arquiteta de soluções sempre vai analisar os impactos comerciais em 
+    relação a uma escolha tecnológica. Porque como sabemos, normalmente quando vamos desenvolver qualquer tipo de solução existem diversas formas de você fazer isso.
+     Então o arquiteto de solução vai entender qual é o contexto que aquele determinado cliente está, para que ele consiga escolher qual tecnologia ele vai trabalhar. 
+     Vamos imaginar um exemplo muito simples: se toda a arquitetura, se todos os softwares e legado que tem naquela empresa está utilizando, por exemplo, AWS, 
+     você não vai fazer um cliente migrar toda sua infraestrutura para o Google somente porque você acha que o Google é melhor, a não ser que tenha um ponto financeiro que vai 
+     impactar muito fortemente ali, então perceba que depende muito do contexto. 
+    
+    Toda a base de dados central daquele sistema é Oracle, você não vai mudar um banco de dados para SQL Server, a não ser que faça muito sentido. Então esses impactos em relação 
+    a escolhas tecnológicas o arquiteto de solução vai ter que ser uma pessoa com muito bom senso para conseguir fazer algo que realmente faça sentido, tanto a curto quanto a médio e
+    longo prazo ali no sistema. 
+
+## Software:
+    - Disciplina da Engenharia de Software
+    - Diretamente ligada ao processo de desenvolvimento de software: arquitetura de software é algo mais ‘baixo nível’. Afeta diretamente a estrutura organizacional da empresa quando estamos falando em times de software
+        - Formação dos times
+        - Lei de Convway: "As organizações que desenlvolvem sistemas de software tendem a produzir sistemas que são cópia das estruturas de comunicação dessas empresas" (Melvin Conway).
+
+    Definição:
+        É a relação entre os objetivos de negócio e suas restrições com os componentes a serem criados e suas responsabilidades visando suau evolução do software
+    
+    Outra definição:
+        É a organização fundamental de um sistema e seus componentes, suas relações, seu ambiente, bem como os príncipios que guiam seu design e evolução" (IEEE Standard 1471).
+
+    Resumindo:
+    o processo de arquitetar um sofware estabelece que o que está sendo desenvolvido faça parte de um conjunto maior.     

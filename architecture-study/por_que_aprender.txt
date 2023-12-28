@@ -1,0 +1,23 @@
+# Vantagens de aprender arquitetura de software
+    - Poder navegar da visão macro para a visão micro de um ou mais softwares
+    - Entender quai são as diversas opções que temos para desenvolver a mesma coisa e escolher
+    a melhor solução para determinado contexto
+    - Pensar a longo prazo no projeto e sua sustentabilidade
+    - Tomar decisões de forma mais fria e calculada evitando assim ser influenciado por 
+    "hypes" de mercado
+    - Mergulho em padrões de projeto e de desenvolvimento e suas boas práticas
+    - Term mais clareza do impacto que o software possui na organização como um todo
+    - Tomar decisões com mais confiança
+
+    *Visão crítica: 
+    Quando a gente entende mais sobre Arquitetura de Software, podemos navegar da
+    visão macro para uma visão micro de um ou mais softwares. Quando você é um 
+    desenvolvedor e não entende absolutamente nada de arquitetura, você está ali 
+    focado naquela classe, tentando resolver aquele crude, aquele problema.
+    Quando você já entende mais de arquitetura de software, você olha para o 
+    código e vê que esse código é um componente, ‘isso’ se relaciona com ‘isso’. 
+    Esse software vai conseguir evoluir porque a relação desses componentes estão 
+    trabalhando nessa forma desacoplada. Esse software vai poder se comunicar com 
+    ‘esse’ através desse protocolo, porque vai ser a forma mais rápida de utilizar.
+    Então, isso aí é interessante. 
+

@@ -1,0 +1,33 @@
+# Sustentabilidade
+    - Desenvolver software é caro
+    - Software resolve um dor
+    - Software precisa se pagar ao longo do tempo:
+
+        A empresa e o software são um organismo. Se a empresa evolue, o software precisa evoluir junto. 
+        Se o produto evolue, o software precisa evoluir junto.
+        O grande ponto que acontece é que quando um software começa a ser desenvolvido ele é entregue, 
+        e a empresa começa a rodar com aquele software e a empresa começa a querer evoluir e aquele software 
+        tem que ser evoluído no conjunto, muitas vezes esse software é feito, não digo nem tão malfeito. 
+        Ele tem um problema tão grande para evoluir que chega um momento que todo dev chega e fala “olha, 
+        não dá mais é melhor refazer, é melhor refazer do zero”. E aí, o que acontece? Esse software nem 
+        terminou de se pagar e aí o que vai acontecer? A empresa tem que começar a desenvolver de novo. 
+        Então a empresa entra naquela corrida dos ratos que ela pensa que está ganhando dinheiro com aquele 
+        software mas, no final das contas, ela só está perdendo porque tem investido e tem que refazer, 
+        e no final do dia ela nunca terminou de pagar e nunca conseguiu atingir aquele breakeven, aquele 
+        ponto de equilíbrio em relação ao que é o que aquele software está retornando é aquilo que ela pagou por ele. 
+        Legal, então isso aí é um ponto importantíssimo quando a gente está falando em sustentabilidade. 
+
+        O ponto é que esse software precisa se pagar ao longo do tempo, precisa acompanhar a evolução do negócio. 
+
+    - Acompanhar a evolução do negócio
+    - Quanto mais tempo o software ficar no ar, mais retorno gera:
+        Cada dia que ele roda mais ele está pagando aquela continha cara que a gente pagou no início para botar ele pra rodar.
+         Então isso que a gente tem que passar. Cada dia que o software está sendo usado, ele está gerando valor. Isso aí é um ponto importante. 
+    - A solução precisa ser bem arquitetada
+
+    Obs:
+    Então, galera, toda solução precisa ser arquitetada. Todo o software precisa ser arquitetado para que ele consiga se manter sustentável por um 
+    longo tempo e retornar aquele valor que ele precisa trazer para o negócio, sem sustentabilidade no dia zero, se o software não pensar em ser 
+    sustentável no dia zero, ele pode gerar um pesadelo para a empresa e dar, no final das contas, prejuízo. E, muitas vezes, o prejuízo que o software 
+    pode dar é a razão da empresa continuar ou não com as suas operações. 
+
