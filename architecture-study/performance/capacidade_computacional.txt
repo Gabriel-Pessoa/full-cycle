@@ -1,0 +1,55 @@
+# Capacidade computacional: escala vertical vs. horizontal
+
+- Escala vertical: aumenta-se os recursos computacionais de uma máquina para lidar com a carga de requisições; 
+
+- Escala horizontal: aumenta-se a quantidade de máquina para lidar com a carga de requisições; geralmente temos um load balancer na frente gerenciando.
+
+# Diferença entre concorrência e paralelismo
+ "Concorrência é sobre lidar com muitas coisas ao mesmo tempo. Paralelismo é fazer muitas coisas ao mesmo tempo" (Rob Pike).
+
+ Ex: Webserver
+
+Eu recebo cinco requisições, e cada requisição tem o tempo de resposta de 10ms
+
+1) Trabalhando de forma serial - único processo:
+
+     10ms   10ms   10ms   10ms   10ms    
+     ---->  ---->  ---->  ---->  ---->
+
+     ---------------------------------
+                  50ms
+
+ - Atende uma requisição por vez, 
+
+
+2) Trabalhando de forma paralela ou concorrente:
+
+     10ms  
+     ---->
+     
+     10ms  
+     ---->
+         
+     10ms  
+     ---->
+          
+     10ms  
+     ---->
+          
+     10ms  
+     ---->
+
+
+     -----
+     10ms
+
+     - Atende várias requisições ao mesmo tempo
+
+
+Exemplo de ferramentas que trabalham de forma não bloqueante:
+
+No Apache, nós podemos aumentar o número de workers. Portanto, eu começo gastando 
+um mega somente para liberar uma thread no meu sistema operacional para eu ter mais 
+worker e mais todo poder computacional e memória que esse worker vai gastar para fazer 
+esse processamento. Assim, não dá para eu abrir infinitas threads, principalmente threads 
+que vamos no sistema operacional.

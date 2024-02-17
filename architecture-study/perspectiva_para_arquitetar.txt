@@ -1,0 +1,7 @@
+# Perspectivas para arquitetar software de qualidade
+
+- Performance: mais para frente iremos entender quais são as métricas para acompanhar a performance do sistema
+
+- Escalabilidade: o software precisa crescer em relação ao número de acessos, se comportando da mesma forma.
+
+- Resiliência: é a capacidade do software se recuperar de falhas. Todo software irá falhar. Devemos ter soluções, planos b's

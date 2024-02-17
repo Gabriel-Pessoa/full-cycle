@@ -1,0 +1,110 @@
+# Introdução a resiliência
+
+    É o conjunto de estratégias intencionalmente para a adaptação de um sistema
+    sistema quando uma falha ocorre. "Você se dobra ou quebra"
+
+    - Resiliência deve ser feita de forma intencional. Devemos mapear os possíveis cenários de erro e criar escape para eles
+    - Minimiza os riscos de perda de dados e transações importantes para o negócio
+
+# Estratégias
+
+1) Proteger e ser protegido
+    
+    - Em microserviços nós precisamos adotar mecanismos de autopreservação para garantir ao máximo sua operação com qualidade
+    - Um sistema não pode ser "egoísta" ao ponto de realizar mais requisições em um sistema que está falhando
+    - Um sistema lento no ar é mais danoso do que um sistema fora do ar. Isso pode ocasionar um efeito em cascata = um sistema 
+    que chama várias outros sistemas e depende de sistemas lentos
+    
+2) Health check
+    Checagem de saúde da aplicação. Eu preciso dos "sinais vitais" da aplicação para saber se ela está saudável ou não.
+    Com o auxílio do "health check", podemos implementar estratégias do sistema se auto-recuperar
+    O health tem que ser bem feito, os "sinais vitais" devem ser bem examinados.  
+ 
+3) Rate Limit
+    Vai proteger o sistema baseado no que ele foi projetado para suportar. Para isso dar certo, temos que saber o limite que o 
+    sistema aguenta = para saber quanto esse limite nós devemos fazer um  teste de estresse do sistema a fim de avaliar seu limite 
+    -- não esquecer de levar em conta o orçamento da empresa também.
+
+    Podemos gerar preferência por cliente, programando o limite para cada cliente específico
+    
+4) Circuit breaker
+    Protege o sistema fazendo com que as requisições feitas para ele sejam negadas. Ex = status http 500.
+    É similar ao disjuntor responsável por proteger o sistema elétrico conta sobrecargas e curto-circuito.
+
+    4.1 Circuito fechado = Requisições chegam normalmente
+    
+    4.2 Circuito aberto = Requisição são barradas na borda, nem chegam a ser processadas pelo sistemas.
+    Erro instantâneo ao cliente
+
+    4.3 Circuito meio aberto = Permite uma quantidade de requisições para verificação se o sistema tem condições de 
+    voltar integralmente
+
+    Obs = Service mashe é um serviço que lida com Circuit Breaker, basicamente cria-se um política de rede, 
+
+5) API Gateway 
+    É uma ferramenta de gerenciamento de APIs que fica entre o cliente e uma coleção de serviços de back-end.
+    Ele funciona como um proxy reverso que aceita todas as chamadas da API, agrega os diversos serviços necessários
+    para realizá-las e retorna o resultado apropriado. É dever do API Gateway aplicar = regras, políticas, plugins
+
+    Com ela, eu consigo barrar requisições "inapropriadas" logo na borda, antes que chegem no sistemas
+
+    Eu consigo implementa políticas de Rate Limiting, Health check, etc
+
+6) Service Mesh, ou malha de serviço
+    Controla tráfego no mercado, em que toda a comunicação de rede é via proxy. Com isso, tudo que esta passando ]
+    na rede consegue ser administrado. Consigo configurar Rate Limiting, Circuit breaker, Autenticação, Criptografia,
+
+    - Ele auxilia no tráfego de rede
+    - Evita implementação de proteção pelo próprio sistema
+    - mTLS
+    - Circuit breaker
+    - Retry
+    - Timeout
+    - Fault injection
+
+7) Comunicação assíncrona
+    Eu consigo dar vazão com menos recursos computacionais 
+    
+    - Evita perda de dados
+    - Não há perda de dados no envio de uma transação quando um serviço está fora
+        Usamos um intermediário para salvar os dados temporariamente a fim de processar posteriormente
+    
+    - Entender com profundidade o message broker / sistema de stream. Tenha garantia de entrega e de recebimento
+
+8) Garantia de entrega
+    - 8.1 Retry Retentativas quando a tentivar anterior falhou
+
+    8.1 Retry Linear - sem backoff = 10 sistemas tentam obtem informações de 1 sistema cada exato 2 seg, simultaneamente
+
+    8.2 Retry Exponential backoff = a política de retentativas executa uma nova tentativa após x tempo de forma exponencial (2, 4, 8, 16, 32 seg)
+
+    8.2 Retry Expenetial backoff com Jitter - a politica de retentativas executa uma nova tentativa após x tempo de forma exponencial, 
+    mas alocando as várias chamadas recebidas ao mesmo tempo em milissegundos diferentes, por exemplo.
+    Ex: 10 sistemas fizeram cada um 10 chamadas no tempo a1. O que essa politica faz gera propositalmente um pequeno ruído em cada dessas chamadas, para que eles
+    não sejam processados exatamente no mesmo tempo, mas tenha um pequena diferença de milissegundos, por exemplo 
+
+9) Garantia de entrega com o Kafka
+    
+    - O que é um message broker = é um software que possibilita que aplicativos, sistemas e serviços se comuniquem e troquem informação, independemente de linguagem ou plataforma, 
+    agnóstico de tecnologia. Ele pode atuar como uma camada de comunicação distribuída que oermite que aplicativos de diversas plataformas se comuniquem internamente.
+    Ele pode atuar como intermediário enter outros aplicativos, permitindo que os remetentes emitam mensagens sem saber onde estão os destinatários, 
+    se eles estão ativos ou não ou quantos deles existem. Isso facilita o desacoplamento de processos e serviços dentro de sistemas
+    Para fornecer armazenamento confiável de mensagens e entrega garantida, os message brokers geralmente contam com um subestrutura ou componenete chamada de fila de mensagens, 
+    que armazena as mensagens ateé que os os aplicativos de consumo possam processá-las. Em uma fila de mensagens, as mensagens são armazenadas na ordem exata em que foram transmitidas
+    e permanecem na fila até que o recebimento seja confirmado. O sistema de mensagens assíncronas garante que as mensagens serão entregues uma vez (apenas uma) e na ordem correta em 
+    relação a outras mensagens. Modelo de mensagem = ponto a ponto e pub/sub
+
+    Cluster é um conjunto de brokers
+
+    Garantia Kafka
+    
+    Ack 0: É esperado que mensagem foi recebido, ou seja, sem garantia de entrega.
+    Ack 1: Tem garantia de confirmação foi recebida apenas pelo Broker Leader, porém ele não replica a mensagem para outros brokers, sem alta disponibilidade
+    Ack -1: Tem garantia de entrega e ele replica a mensagem para outros brokers, tem alta disponiblidade
+
+10) Situações complexas e como tratar
+    
+    -O que acontece se o message broker cair
+    - Haveŕa perda de mensagens 
+    - Seu sistema ficará fora do ar
+    - Como garantir resiliência

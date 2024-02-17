@@ -1,0 +1,34 @@
+# Edge computing:
+Então, o que o Edge computing faz no final das contas? Ele nos ajuda a fazer com que a informação do usuário esteja mais perto dele,
+evitando assim com que a sua requisição trafegue mais pela internet. A Edge computing consegue fornecer serviços além de simplesmente
+de uma CDN como eu acabei de falar, que consigam processar informações mais próximas do usuário, evitando com que essa informação 
+bata no seu servidor, esse é o grande ponto. Já pensou se você conseguisse pegar tudo que tem na sua máquina e que você perceba que 
+pudesse estar na borda, ou seja, na edge, antes de bater no seu servidor e bater lá, você paga metade do preço e economiza muito em servidor. 
+E, além disso, o usuário tem uma experiência muito mais rica porque ele está muito mais perto de onde a informação está, então, esse é um 
+ponto extremamente importante hoje em dia. E agora acabamos falando muito de caching, usando a própria Edge computing. Isso é muito interessante, 
+a internet não é ilimitada, a rede não é ilimitada. Quanto mais você fizer com que o usuário evite de ir longe com a requisição dele, melhor. 
+
+- Cache é realizado próximo do usúario
+
+- Evita a requisição chegar até o Cloud Provider / Infra: alivia o consumo e , consequentemente, os custos com cloud.
+
+- Normalmente arquivos estáticos:
+    Hospedar arquivos estáticos, duplicando-os para ficar mais próximo do usuário
+    Ex: CloudFlare
+
+- CDN (Content Delivery Network): por exemplo, a Netflix, cria-se uma malha com vários Data Center's, para ficar mais próximo do usuário,
+ onde serão duplicados os filmes, tornando o acesso ao conteúdo, da parte do usuário, muito mais rápido.
+    
+    Ex: Akamai. A primeira vez que alguém acessa esse vídeo a Akamai pega ele e joga nessa malha de servidores, 
+    contratos e parcerias que elas têm com os provedores de internet brasileiro. E é muito comum, por exemplo, 
+    você estar em São Paulo, você provavelmente deve estar vendo o seu vídeo sendo baixado de um servidor aqui 
+    de São Paulo, e isso só está acontecendo porque a gente usa CDN. Se você está em Portugal, provavelmente o 
+    seu vídeo está vindo de Portugal e é assim que as coisas começam a funcionar.
+
+- CloudFlare Workers:
+    Faz o deploy da aplicação em várias bandas, mundialmente, tornando o acesso mais rápido e o custo acessível.
+
+- Vercel:
+    Similar ao CloudFlare, mas mantém cache do backend 
+
+- Akamai

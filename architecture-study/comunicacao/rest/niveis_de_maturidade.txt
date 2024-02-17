@@ -1,0 +1,41 @@
+# Rest
+
+    - Rest : Representation State of transf ()
+    - Muito desenvolvedores já sabem trabalhar com ele
+    - Surgiu em 2000 por Roy Fielding, em uma dissertação de doutorado
+    - Simplicidade: facilidade para implementar e para consumir
+    - Stateless: parte do princípio de não guardar o estado
+    - Cada requisição deve carregar todas as informações
+    - Cacheável: podemos cachear 
+
+# Níveis de maturidade (Richardson Maturity Model)
+    
+    - Nível 0 (The Swamp of POX): Não tem utiliza recursos de URI, HTTP Methods e HATEOAS.
+        A API tem um único URI e usa um único método HTTP (normalmente POST).
+    
+
+    - Nível 1 (Resource): já faz uso eficiente de URIs, os recursos são mapeados, 
+        mas ainda não emprega o uso eficiente dos verbos.
+        
+
+    - Nível 2 (HTTP Verbs): Faz o uso eficiente de URIs e verbos HTTP.   
+        
+        A API suporta os diversos verbos HTTP:
+        * POST - Criar
+        * Get - Ler
+        * Put - Atualizar
+        * Delete - Excluir
+        * PAtch - Atualizar parcialmente
+
+        **OBS: Nesse nível as API's começam a se aproximar do que o RESTFul espera.
+        Nos níveis anteriores o protocolo está sendo usado superfialmente
+    
+    - Nível 3 (HATEAOS): Faz uso eficiente dos três fatores: URIs, HTTP e HATEOAS.
+
+        - Nesse nível de maturidade a API nos guia no que podemos fazer a seguir e o URI
+            do recurso que precisamos manipular para fazê-lo.
+
+        Esse é o nível mais maduro do modelo de Richardson. A API começa a guiar as proximas 
+        ações através do response. Os consumidores da API podem fazer uma trilha nos resources.
+
+        

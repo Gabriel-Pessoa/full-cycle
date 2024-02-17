@@ -1,0 +1,83 @@
+# Rest: Uma boa API REST
+
+    - Utiliza URIs para serviços e itens expostos para esses serviços.
+        Ex:
+            - /products
+            - /products/1
+            - /products/1/clients
+
+    - Utiliza todos os verbos HTTP para realizar as operações em seus recursos, 
+    incluindo caching
+
+    - Provê links relacionais para os recursos exemplificando o que pode ser feito (HATEOAS)
+
+# REST: Hal, Collection+JSON e Siren        
+
+    - JSON não provê um padrão de hipermídia para realizar a linkagem
+    - HAL: Hypermedia Application Language
+    - Siren: 
+
+    Media type = application/hal+json
+    Ex:
+        {
+            "_links": {
+                "self": {
+                    "href": "https://fullcycle.com.br/api/user/wesley"
+                }
+            },
+            "id": "wesley",
+            "name": "Wesley Williams"
+            "_embedded": {
+                "family": {
+                    "_links": {
+                        "self": {
+                            "href": "https://fullcycle.com.br/api/user/mari"
+                        }
+                    },
+                    "id": mari,
+                    "name":
+                }
+            }
+        }
+
+    Explicando: temos dados, dados complementares e como acessar esses dados
+
+    - REST: HTTP Method Negotiation
+        HTTP possui outri método chamado OPTIONS. Esse método nos permite informar quais métodos
+        são permitidos ou não em determinado recurso
+    
+    - REST: Content Negotiation
+        O processo de content negotiation é basedo na requisição que o client está fazendo para o server. 
+        Nesse caso ele solicita o que e como ele quer a resposta. O server entçao retornará ou não a 
+        informação no formato desejado.
+
+        Ex:
+        GET /products
+        Accept: application/json
+
+        Resposta pode ser o retorno dos dados ou : 
+        HTTP/1.1 406 Not Acceptable
+
+    - REST: Content Negotiation
+        
+        Content-Type Negotiation: Através de um content-type no header da request, o servidor consegue verificar
+        se ele irá conseguir processar a informação para retornar a informação desejada.
+
+        POST /products HTTP/1.1
+        Accept: application/json
+        Content-Type: application/json
+
+        {
+            "name": "product 1"
+        }
+        
+        Caso o servidor não aceite o content type, ele poderá retornar:
+
+        HTTP/1.1 415 Unsupported Media Type
+
+        OBS: Um insight é que, se quisermos versionar a API, não precisa passar um "/v1" ou "/v2" na resposta
+        é só usar um "Accept" customizado. Ex: application/vnd.project.v1+json
+
+        
+
+

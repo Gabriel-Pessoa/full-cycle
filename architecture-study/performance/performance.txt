@@ -1,0 +1,26 @@
+# Métricas para medir performance:
+
+- É o desempenho que um software possui para completar um determinado workload.
+
+- Precisamos de dados para determinar a performance; e o comparativo não é feito com "software vizinhos", 
+    mas sim com o próprio software à medida que ele vai evoluindo.
+
+* As unidades de medida para avaliarmos a performance de um software são várias, mas as mais relevante dentre todas são:
+    
+    - Latência (response time): é o tempo de resposta de processamento para requisição até a sua resposta, levando em conta o tempo exato que ela chegou até a sua resposta.
+    
+    - Throughput: é basicamente a quantidade de requisições que o software pode suportar
+
+* Ter um software performático é diferente de ter um software escalável:
+    Performance é diferente de escalabiliidade 
+
+* Como melhorar a performance do software:
+    - Diminuindo a latência: 
+        - Normalmente medida em milliseconds
+        - É afetada pelo tempo de processamento da aplicação, rede e chamadas externas
+            - Rede: o tempo de chamada é afetado pela rede quando a rede da aplicação é instável, se o data center fica muito distante, piora a latência
+            - Aplicação: o software foi desenolvido de um modo que eleva o tempo da requisição
+   
+    - Aumentando throughput:
+        - Quantidade de requisições: aumentar a quant. de requisições simultâneas
+        - Quanto mais requisições forem processadas em menos tempo mais performática será a aplicação. Throughput está diretamente ligado à latência. 

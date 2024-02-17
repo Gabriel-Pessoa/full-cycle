@@ -1,0 +1,42 @@
+# Caching
+
+- Cache na borda / Edge computing:
+    É um cache que fica na linha de frente. O conteúdo é cacheado antes mesmo de bate no servidor/serviço principal.  
+    No nosso caso, por exemplo, a própria plataforma Full Cycle trabalha com Edge Computing. 
+    Juntamente com a Cloudflare ela consegue, nesse nosso caso, fazer o cache de toda a nossa plataforma. 
+    Assim, todo usuário que acessa a plataforma antes mesmo dela bater no Kubernetes, bate na CloudFlare. 
+    Ela vai fazer o download de todo o HTML, CSS, JavaScript, as imagens, etc, do local mais próximo do usuário. 
+
+- Dados estáticos
+    É muito comum cachear conteúdo estáticos (HTML, CSS, imagens, javascript), melhorando a experiência do usuário.
+
+- Páginas web
+    Devolve primeiro uma página semi-pronta, muitas vezes com um template para ser processados com pouquíssimos dados
+
+- Funções internas
+    - Cachear essas funções evita reprocessamento de algoritmos pesados, que demandam muito processamento para obter um resultado
+    - Cacher acesso ao banco de dados
+
+- Objetos
+    - Cachear tipos de acessos, entidade, estrutura facilitando a manipulação e persistência dos dados.
+
+
+# Exclusivo vs Compartilhado
+    
+   - Exclusivo 
+        O cache estará rodando exclusivo para aquela máquina, sendo processado localmente
+
+        - Baixa latência
+        - Duplicado entre os nós: como o cache roda localmente em cada máquina, duplicar as máquinas duplicára também o cache
+        - Problema relacionado a sessões: o cache fica armazenado em um única máquina, podendo ser perdido caso haja duplicidade de máquina 
+
+    - Compartilhado:
+        O cache será compartilhado e disponível para todos utilizarem.
+
+        - Maior latência: o cache estará sendo servido, portanto, teremos que acessa esse servidor e consumi-lo
+        - Não há duplicação
+        - Não há problema de sessões
+        - Banco de externo: todos acessam o mesmo banco
+            - MySql: usado para guarda resultado de cache
+            - Redis: usado como cache de memória
+            - Memcache

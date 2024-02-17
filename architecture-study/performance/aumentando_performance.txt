@@ -1,0 +1,30 @@
+# Principais razões para baixa performance
+
+- Processamento ineficiente: o algoritmo está ineficiente
+
+- Recursos computacionais: hardware -- memória, processador e etc afetam a performance da aplicação
+    - Deve-se avaliar o "trade-off": É um equilibrio sensível entre benefícios, riscos e custos.
+
+- Trabalhar de forma bloqueante: sem multithreading, sem assincronismo, usando código bloqueante, que aguarda a conclusão de vários processos que poderiam ser assíncronos.
+    Isso gera uma barreira para elevar o throughput da aplicação 
+
+- Acesso serial aos recursos: acesso sequencial à api, um requisição após a outra, em sequência; formando uma espécie de fila de processamento.
+
+# Principais formas para aumentar a eficiência:
+
+- Escala da capacidade computacional (CPU, Disco, Memória, Rede)
+
+- Lógica por trás do software (Algoritmo, queries, overhead de frameworks)
+    - Algoritmo ineficientes àquele processamento
+    - Queries: Queries ineficientes, falta e/ou uso incorreto de indices 
+    - Overhead de frameworks : problema comuns do framework específico.
+    Obs: precisa-se avaliar cada ponto desse individualmente. Não adianta ter apenas um eficiente para que a aplicação torne-se eficiente.
+
+- Concorrência e/ou paralelismo
+
+- Banco de dados (tipos de bancos, schema)
+ - Explain para avaliar o tempo de execução das queries
+ - Ferramenta de APM (New Relic, Datadog, AppDynamics)
+
+- Caching: útil para informações recorrentes e estáticas, que já foram consumidas anteriormente e não mudam com rapidez.
+    - Imporatante definir o algoritmo de validade do cache

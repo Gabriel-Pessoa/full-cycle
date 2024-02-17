@@ -1,0 +1,18 @@
+# Escalabilidade
+
+    É a capacidade de sistemas suportarem o aumento (ou a redução) dos workloads incrementando (ou reduzindo) 
+o custo em menor ou igual proporção
+
+Custo = capacidade computacional. Quanto menor o custo, eu aumento menos, e quanto maior o custo, eu aumento mais  
+
+# Escalabilidade x Performance 
+
+    Enquanto performance tem o foco em reduzir a latência e aumentar o throughput, a escalabilidade visa termos 
+    a possibilidade de aumentar ou diminuir o throughput adicionando ou removendo a capacidade computacional.
+
+# Escalando software 
+
+- Escala vertical = gerenciamento dos recursos computacionais de um máquina. Com uma máquina, toda o sistema irá cair, pois não tem máquinas de backup
+- Escala horizontal = gerenciamento de recursos computacionais de várias máquinas
+
+

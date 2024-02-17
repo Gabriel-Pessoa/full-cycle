@@ -1,0 +1,19 @@
+# Escala de banco de dados
+
+1) Como eu escalo o db ?
+    Aumento recursos computacionais mais memória, cpu, ssd, 
+
+- Distribuindo responsabilidade (escrita vs leitura)
+ Assim, se um banco de dados está tendo muita escrita e muita leitura muitas vezes, o que eu posso fazer? Eu posso criar um banco de dados específico para leitura e um banco de dados específico para escrita. 
+ Conforme eu vou escrevendo neste banco ele vai fazendo uma réplica e toda vez que eu precisar fazer consultas, eu faço nessa réplica. 
+ Toda vez que eu precisar fazer escrita, eu faço em outra réplica. Isso já vai nos ajudar demais em relação a distribuir responsabilidade de banco de dados. 
+
+- Shards (fragmento de banco de dados, é uma partição horinzontal de dados em um banco de dados. Cada shard é armazenado em uma instância de servidor de db separada, para distribuir a carga) de forma horizontal
+
+- Serverless = Não é apenas o lambda da AWS. É qualquer coisa que você não se preocupa a nível de servidor
+
+- Otimização de queries e índices 
+    Tenha um sistema de APM, para monitorar as queries
+    - Usar os índices de forma consciente
+    - Explain na queries
+    - CQRS, um pattern para segregar as responsabilidades do db

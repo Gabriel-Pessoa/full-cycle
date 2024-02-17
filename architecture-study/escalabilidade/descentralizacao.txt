@@ -1,0 +1,15 @@
+# Descentralização.
+    
+    É inviável escalar constantemente a aplicação de forma vertical. 
+    É indicado escalar horizontalmente.
+
+Obs = É preciso pensar no software de forma descentralizada, 
+sabendo que a quantidade de máquinas é dinâmica, descartável  
+
+- Disco efêmero = os arquivos são perdidos
+- Servidor de aplicação (sistema, código) x Servidor de assets (html, css, javascript, imagem, áudio)
+- Cache centralizado (servidor de cache)
+- Sessões centralizadas
+- Upload / Gravação de Arquivos não ficam na máquina. Eles ficam num bucket
+
+Não armazenamos estado em aplicação descentralizadas = stateless

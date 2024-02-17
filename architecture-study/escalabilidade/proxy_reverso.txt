@@ -1,0 +1,12 @@
+# Proxy reverso
+    Fica na frente dos servidores web interceptando as requisições e encaminhando para servidor interno específico.
+
+- Vantagens
+    Rate limit
+    Firewall
+    Balancemaneto de carga
+    
+Principais proxies
+ - Nginx
+ - HAProxy (HA = High Availability)
+ - Traefik
