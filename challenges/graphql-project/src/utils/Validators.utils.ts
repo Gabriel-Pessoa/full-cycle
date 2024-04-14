@@ -1,6 +1,6 @@
 export function isValidString(str: any): boolean {
     const isStringType = typeof str === "string";
-    const isValidValue = str == true;
+    const isValidValue = str.trim().length > 0;
     return isStringType && isValidValue;
 }
 

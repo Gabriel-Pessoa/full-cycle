@@ -1,6 +1,8 @@
+import 'dotenv/config'
+
 export const env = {
     "app":{
-        "environmentType": process.env.NODE_ENV,
+        "environment": process.env.NODE_ENV,
         "serverPort": process.env.APP_SERVER_PORT,
     },
     "database": {
