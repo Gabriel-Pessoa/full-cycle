@@ -4,6 +4,9 @@ APP=graphql-project
 run/db:
 	docker-compose up --detach --build ${db}
 
+connect/db:
+	docker-compose exec ${db} mysql -uroot -p
+
 run/app:
 	docker-compose up --detach --build ${APP}
 

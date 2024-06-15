@@ -5,6 +5,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     command: --innodb-use-native-aio=0
+    stdin_open: true
     tty: true
     volumes:
       - mysql-data:/var/lib/mysql

@@ -1,21 +1,17 @@
-import { Database } from '../database/types';
-import { globalConfig } from '../config/Global.conf';
-import { UserRepository } from "../database/userRepository";
-import { createConnection } from "mysql2";
+import mysql from 'mysql2/promise';
+import RepositoryAbstractFactory from '../infra/database/factory/RepositoryAbstractFactory.interface';
+import RepositoryDatabaseFactory from '../infra/database/factory/RepositoryDatabaseFactory';
 import { StandaloneServerContextFunctionArgument } from '@apollo/server/standalone';
+import { globalConfig } from './../config/Global.conf';
 
 export interface IContext {
-    database: Database;
+    repositoryFactory: RepositoryAbstractFactory
 }
 
-const mysqlConnection = createConnection(globalConfig.mysqlConfig);
-
 export async function buildGraphQLContext(arg: StandaloneServerContextFunctionArgument): Promise<IContext> {
+    const mysqlConnection = await mysql.createConnection(globalConfig.mysqlConfig);
+   
     return {
-        database: {
-            mysql: {
-                userRepository: new UserRepository(mysqlConnection),
-            },
-        },
+        repositoryFactory: new RepositoryDatabaseFactory(mysqlConnection),
     }
 }

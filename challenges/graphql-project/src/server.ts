@@ -6,16 +6,18 @@ import { globalConfig } from './config/Global.conf';
 import { typeDefs, resolvers } from './schema'
 
 const schema = makeExecutableSchema({
-  resolvers,
   typeDefs,
+  resolvers,
 });
 
 async function main() {
   const server = new ApolloServer<IContext>({ schema });
+
   const { url } = await startStandaloneServer(server, {
     context: buildGraphQLContext,
     listen: { port: globalConfig.appServerPort },
   });
+
   console.log(`
     🚀  Server is running!
     📭  Query at ${url}

@@ -11,7 +11,6 @@ export const typeDefs = /* GraphQL */ `
     ${UserTypes}
 `;
 
-
 export const resolvers = {
     Query: {
         ...UserQuery,
