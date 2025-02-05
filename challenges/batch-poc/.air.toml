@@ -1,0 +1,29 @@
+# Config file for [Air](https://github.com/air-verse/air) in TOML format
+
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o /gon/bin/batch-poc -gcflags='all=-N -l' -a cmd/server/main.go"
+bin = "/gon/bin/batch-poc"
+full_bin = "dlv exec /gon/bin/batch-poc --headless --log --listen :2345 --api-version 2"
+args_bin = ["server"]
+include_ext = ["go", "tpl", "tmpl", "html"]
+exclude_dir = ["tmp", "vendor", ".vscode"]
+exclude_file = []
+exclude_regex = ["_test\\.go"]
+exclude_unchanged = true
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+# Delete tmp directory on exit
+clean_on_exit = true
+
+[screen]
+clear_on_rebuild = true
+keep_scroll = true

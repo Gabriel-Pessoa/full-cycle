@@ -1,0 +1,21 @@
+# Contexto
+
+No cenário de serviços distribuídos, como cada aplicação sabe qual máquina chamar, qual porta utilizar,
+qual IP da instância, como tem certeza que a instância está saudável, se tem permissão?
+
+# Service Discovery
+
+- Ajuda a descobrir quais são as máquinas dispoíveis para acesso. 
+- Segmentação de máquinas para garantir segurança
+- Resolução via DNS: 
+    se eu tenho subdomínio, nome do serviço, através da resolução de dns, eu posso chamar esses serviços internos na minha rede. 
+    Com isso eu sei quais são todas as máquinas registradas no Service-Discovery
+- Health check: tem funcionalidade de verificação de saúde das máquinas disponíveis, verificando se elas estão capacitadas para uso
+- Permissão: política de acesso de máquinas
+
+# Hashicorp Consul 
+
+Ferramenta de Service Discovery, Service Segmentation, Load Balancer na Borada (Layer 7), Key/ Value Configuration (envs), 
+Segurança com criptografia;
+
+Consigo registrar os serviços, gerenciar sua disponibilidade (up e down), servidor de dns próprio, api para consulta

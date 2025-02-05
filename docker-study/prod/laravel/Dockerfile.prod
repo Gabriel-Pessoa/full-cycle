@@ -31,7 +31,7 @@ RUN rm -rf /var/www/html
 # para dentro do container atual
 COPY --from=builder /var/www/sample-app .
 
-# Crando link simbólico
+# Criando link simbólico
 RUN ln -s public html
 
 # permissões:

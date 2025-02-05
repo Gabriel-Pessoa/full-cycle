@@ -1,0 +1,15 @@
+services:
+  batch-poc-debug:
+    image: batch-poc:debug
+    container_name: batch-poc-debug 
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 2345:2345
+    networks:
+      - appNet
+
+networks:
+  appNet:
+    driver: bridge
+    

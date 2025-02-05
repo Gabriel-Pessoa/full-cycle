@@ -1,0 +1,14 @@
+# Agent
+Processo que fica sendo executado em todos os nós do cluster. Pode estar sendo executado em Client Mode ou Server Mode
+
+# Client
+Registra os serviços localente, Health check, encaminha os as informações e configurações para o Server
+
+# Server
+Mantém o estado do cluster, registra os serviços enviados pelos clientes, 
+Membership (quem é client e quem é server), 
+retorno de queries (DNS ou API), 
+troca de informações entre datacenters, etc
+
+# Dev Mode
+Usado para POC, testes de features, exemplos. Roda como servidor, Não escala, Registra tudo em memória

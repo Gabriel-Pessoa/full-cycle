@@ -17,21 +17,24 @@ export class UserDatabaseRepository implements UserRepository {
         );
 
         const [registry] = rows;
-        if (!registry) {
+        if (!registry)
             throw new Error('not found');
-        }
+
 
         return User.restore(registry.user_id, registry.user_name, registry.user_date_of_birth, registry.created_at, registry.updated_at);
     }
 
     async list(): Promise<User[]> {
         const users: User[] = [];
+
         const [rows] = await this.connection.execute<RowDataPacket[]>(
             'SELECT user_id, user_name, user_date_of_birth, created_at, updated_at FROM Users'
         );
+
         rows.forEach(registry => {
             users.push(User.restore(registry.user_id, registry.user_name, registry.user_date_of_birth, registry.created_at, registry.updated_at));
         });
+        
         return users;
     }
 }

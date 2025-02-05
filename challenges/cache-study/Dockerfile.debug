@@ -1,0 +1,18 @@
+FROM golang:1.23-alpine
+
+WORKDIR /usr/src/app
+
+# Install dependecies
+RUN go install github.com/air-verse/air@latest && \
+    go install github.com/go-delve/delve/cmd/dlv@latest 
+
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+
+COPY . .
+
+RUN GO111MODULE=on GOOS=linux GOARCH=amd64 CGO_ENABLED=0 
+
+EXPOSE 2345
+
+CMD ["air", "-c", ".air.toml"]

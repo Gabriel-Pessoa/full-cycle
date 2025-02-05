@@ -1,0 +1,3 @@
+# Principio da Responsabilidade Única
+
+- Um método, função devem ter apenas um motivo para mudar

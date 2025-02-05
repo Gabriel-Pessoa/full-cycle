@@ -1,0 +1,3 @@
+# Principio de Substituição de Liskov 
+
+- Subclasses podem ser substituídas por suas classes pai

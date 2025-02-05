@@ -1,0 +1,6 @@
+# Principio de Inversão de Dependência
+
+- Dependa de abstrações e não de implementações
+- Inverter as dependências
+- Inversão de controle, quando o controle não fica dentro da classe que depende daquele objeto
+- Um "new" dentro de uma classe é um indicador que esse princípio está sendo ferido

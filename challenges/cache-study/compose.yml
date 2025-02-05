@@ -1,0 +1,21 @@
+services:
+
+  debug:
+    container_name: debug 
+    build:
+      context: .
+      dockerfile: Dockerfile.debug
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 2345:2345
+    networks:
+      - appNet
+
+  redis:
+    image: redis:alpine
+
+networks:
+  appNet:
+    driver: bridge
+    

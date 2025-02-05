@@ -1,0 +1,3 @@
+# Principio de Segregação das Interfaces
+
+- Uma classe não é obrigado a implementar interfaces que ela não utilizará

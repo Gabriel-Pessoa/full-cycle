@@ -1,0 +1,7 @@
+# Health check ativo 
+
+Consul tem um agente rodando em cada servidor, verificando a disponibilidade de cada serviço. 
+Esse health check pode ser configurado via http e, dependendo da resposta, o agente avisar para o Consul server 
+para que esse tire o serviço do registro. 
+
+O Consul tem suporte para multi cloud

@@ -1,0 +1,3 @@
+# Principio de Aberto e Fechado
+
+- Uma classe deve aberta para extensão e fechada para modificação
