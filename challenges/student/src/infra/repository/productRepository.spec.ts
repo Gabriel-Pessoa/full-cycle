@@ -6,26 +6,28 @@ import ProductRepository from './productRepository';
 describe("Product repository unit tests", () => {
     let sequelize: Sequelize;
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         sequelize = new Sequelize({
             dialect: 'sqlite',
             storage: ':memory:',
             logging: false,
             sync: { force: true },
+            models: [ProductModel],
         });
-
-        sequelize.addModels([ProductModel]);
         await sequelize.sync();
     });
 
-    afterEach(async () => {
+    afterEach(async () => {      
+        await sequelize.models['ProductModel'].destroy({ where: {}, force: true });
+    });
+
+    afterAll(async () => {
         await sequelize.close();
     });
 
     it("Should create a product", async () => {
         const productRepository = new ProductRepository();
         const product = new Product("1", "Product 1", 100);
-
         await productRepository.create(product);
 
         const productModel = await ProductModel.findOne({ where: { id: "1" } });
@@ -42,7 +44,6 @@ describe("Product repository unit tests", () => {
     it("Should update a product", async () => {
         const productRepository = new ProductRepository();
         const product = new Product("1", "Product 1", 100);
-
         await productRepository.create(product);
 
         const productModel1 = await ProductModel.findOne({ where: { id: "1" } });
@@ -57,7 +58,6 @@ describe("Product repository unit tests", () => {
 
         product.changeName("Product 2");
         product.changePrice(200);
-
         await productRepository.update(product);
 
         const productModel2 = await ProductModel.findOne({ where: { id: "1" } });
@@ -74,18 +74,15 @@ describe("Product repository unit tests", () => {
     it("Should find a product", async () => {
         const productRepository = new ProductRepository();
         const product = new Product("1", "Product 1", 100);
-
         await productRepository.create(product);
 
         const productModel = await ProductModel.findOne({ where: { id: "1" } });
 
-        const foundProduct = await productRepository.find("1");
-
         expect(productModel.toJSON()).toStrictEqual(
             {
-                id: foundProduct.id,
-                name: foundProduct.name,
-                price: foundProduct.price,
+                id: "1",
+                name: "Product 1",
+                price: 100,
             }
         );
     });
@@ -101,8 +98,8 @@ describe("Product repository unit tests", () => {
         await productRepository.create(product2);
 
         const createdProducts = [product1, product2];
-        const foundProducts = productRepository.findAll();
-        
+        const foundProducts = await productRepository.findAll();
+
         expect(createdProducts).toEqual(foundProducts);
     });
 });

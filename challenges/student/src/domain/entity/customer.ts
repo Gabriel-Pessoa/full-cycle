@@ -4,8 +4,8 @@ export default class Customer {
     private _id: string;
     private _name: string;
     private _active: boolean = false;
-    private _address: Address;
     private _rewardPoints: number = 0;
+    private _address: Address;
 
     constructor(id: string, name: string) {
         this._id = id;
@@ -25,8 +25,8 @@ export default class Customer {
         return this._id;
     }
 
-    setAddress(address: Address) {
-        this._address = address;
+    get Address(): Address {
+        return this._address;
     }
 
     validate() {
@@ -52,6 +52,10 @@ export default class Customer {
         this.validateName();
     }
 
+    changeAddress(address: Address) {
+        this._address = address;
+    }
+
     activate() {
         if (this._address === undefined) {
             throw new Error("Address is mandatory to activate a customer");
@@ -72,4 +76,7 @@ export default class Customer {
         this._rewardPoints += points;
     }
 
+    set Address(address: Address) {
+        this._address = address;
+    }
 }

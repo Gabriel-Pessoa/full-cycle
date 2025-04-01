@@ -1,16 +1,20 @@
-import OrdemItem from './order_item';
+import OrderItem from './order_item';
 
 export default class Order {
     private _id: string;
     private _customerId: string; // Guarda-se a referencia do customer e nao a entidade toda
-    private _items: OrdemItem[] = [];
+    private _items: OrderItem[] = [];
 
-    constructor(id: string, customerId: string, items: OrdemItem[]) {
+    constructor(id: string, customerId: string, items: OrderItem[]) {
         this._id = id;
         this._customerId = customerId;
         this._items = items;
 
         this.validate();
+    }
+
+    get id(): string {
+        return this._id;
     }
 
     total(): number {
